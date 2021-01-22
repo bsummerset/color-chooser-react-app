@@ -1,24 +1,57 @@
-import logo from './logo.svg';
 import './App.css';
+import BlueColor from './BlueColor';
+import RedColor from './RedColor';
+import GreenColor from './GreenColor';
+import ColorButton from './ColorButton';
+import ColorCard from './ColorCard';
+
+
+import {useState} from 'react'
 
 function App() {
+  const [color, setColor] = useState("");
+  const [counter, setCounter] = useState(0);
+  const data = [
+    {
+        name: "Red",
+        color: "Red"
+    },
+    {
+        name: "Blue",
+        color: "Blue"
+    },
+    {
+        name: "Green",
+        color: "Green"
+    }
+]
+const divStyle = {
+  color: 'black',
+  backgroundColor: color,
+  height: "100vh"
+};
+  console.log(`This is the color in state: `, color, counter);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app" style={divStyle}>
+      <h1>Welcome to the world of Colors</h1>
+      <ColorButton onClick={() =>{
+        setColor(data[counter].name)
+        if (counter < 2) {
+           setCounter(counter + 1) 
+        } else {
+          setCounter(0)
+        }
+        } 
+        } />
+      <ColorCard color={color} />
+      <GreenColor/>
+      <RedColor />
+      <BlueColor />
+      {/* <ColorData onClick={color}/> */}
     </div>
+   
+      
+  
   );
 }
 
